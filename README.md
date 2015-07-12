@@ -12,16 +12,16 @@ Time spent: 16
 - [X] Hamburger menu - The menu can look similar to the LinkedIn menu below or feel free to take liberty with the UI.
 - [X] Profile page - Contains the user header view
 - [X] Profile page - Contains a section with the users basic stats: # tweets, # following, # followers
-- [] Home Timeline - Tapping on a user image should bring up that user's profile page
+- [ ] Home Timeline - Tapping on a user image should bring up that user's profile page
 
 #### Optional
-- [] Profile page - Implement the paging view for the user description.
-- [] Profile page - As the paging view moves, increase the opacity of the background screen. See the actual Twitter app for this effect
-- [] Profile page - Pulling down the profile page should blur and resize the header image.
-- []  Account switching - Long press on tab bar to bring up Account view with animation
-- []  Account switching - Tap account to switch to
-- []  Account switching - Include a plus button to Add an Account
-- []  Account switching - Swipe to delete an account
+- [ ] Profile page - Implement the paging view for the user description.
+- [ ] Profile page - As the paging view moves, increase the opacity of the background screen. See the actual Twitter app for this effect
+- [ ] Profile page - Pulling down the profile page should blur and resize the header image.
+- [ ]  Account switching - Long press on tab bar to bring up Account view with animation
+- [ ]  Account switching - Tap account to switch to
+- [ ]  Account switching - Include a plus button to Add an Account
+- [ ]  Account switching - Swipe to delete an account
 
 ### Walkthrough
 
