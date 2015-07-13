@@ -12,7 +12,7 @@ Time spent: 16
 - [X] Hamburger menu - The menu can look similar to the LinkedIn menu below or feel free to take liberty with the UI.
 - [X] Profile page - Contains the user header view
 - [X] Profile page - Contains a section with the users basic stats: # tweets, # following, # followers
-- [ ] Home Timeline - Tapping on a user image should bring up that user's profile page
+- [X] Home Timeline - Tapping on a user image should bring up that user's profile page
 
 #### Optional
 - [ ] Profile page - Implement the paging view for the user description.
