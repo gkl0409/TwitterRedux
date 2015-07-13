@@ -49,7 +49,7 @@
         [[TwitterClient sharedInstance] loginWithCompletion:^(User *user, NSError *error) {
             if (user != nil) {
                 [self setWithUser:user];
-                [self.delegate menuTableViewController:self link:@"timeline"];
+                [self.delegate menuTableViewController:self link:@"timeline" userId: nil];
                 [self.tableView reloadData];
             } else {
                 NSLog(@"Fail to get request token: %@", [error localizedDescription]);
@@ -142,11 +142,11 @@
 {
     if (self.user != nil) {
         if (indexPath.row == 1) {
-            [self.delegate menuTableViewController:self link:@"user"];
+            [self.delegate menuTableViewController:self link:@"user" userId: nil];
         } else if (indexPath.row == 2) {
-            [self.delegate menuTableViewController:self link:@"timeline"];
+            [self.delegate menuTableViewController:self link:@"timeline" userId: nil];
         } else if (indexPath.row == 3) {
-            [self.delegate menuTableViewController:self link:@"mentions"];            
+            [self.delegate menuTableViewController:self link:@"mentions" userId: nil];
         }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:NO];

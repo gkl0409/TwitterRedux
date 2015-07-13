@@ -14,7 +14,7 @@
 
 @protocol MenuTableViewControllerDelegate <NSObject>
 
-- (void) menuTableViewController: (MenuTableViewController *) menuTableViewController link:(NSString *)link;
+- (void) menuTableViewController: (MenuTableViewController *) menuTableViewController link:(NSString *)link userId:(NSString *)userId;
 
 @end
 

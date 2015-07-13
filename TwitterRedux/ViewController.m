@@ -30,7 +30,7 @@ const float MASK_ALPHA_MAX=0.6;
     ListViewController *listVC = [self.childViewControllers[0] childViewControllers][0];
     MenuTableViewController *menuVC = self.childViewControllers[1];
     menuVC.delegate = listVC;
-    [menuVC.delegate menuTableViewController:menuVC link:@"timeline"];
+    [menuVC.delegate menuTableViewController:menuVC link:@"timeline" userId:nil];
     
 //    for (UIViewController *vc in self.childViewControllers) {
 //        NSLog(@"%@", NSStringFromClass(vc.class));

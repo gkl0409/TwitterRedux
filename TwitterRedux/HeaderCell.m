@@ -32,6 +32,7 @@
     [self.profileImage setClipsToBounds:YES];
     [self.BackgroundImage setBackgroundColor:UIColorFromRGB(user.profileBackgroundColor)];
     [self.BackgroundImage setClipsToBounds:YES];
+    [self.BackgroundImage setImage:nil];
     if (user.profileBannerUrl != nil) {
         [self.BackgroundImage setImageWithURL:[NSURL URLWithString:user.profileBannerUrl]];
     }

@@ -47,8 +47,9 @@
 
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
-    [self.refreshControl addTarget:self action:@selector(bindTweets) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(bindTweets)  forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+    
 }
 
 - (IBAction)onNew:(id)sender {
@@ -66,7 +67,7 @@
     [self.delegate triggerMenuBtn];
 }
 
-- (void)menuTableViewController:(MenuTableViewController *)menuTableViewController link:(NSString *)link
+- (void)menuTableViewController:(MenuTableViewController *)menuTableViewController link:(NSString *)link userId:(NSString *)userId
 {
     [self.navigationItem.leftBarButtonItem setEnabled:NO];
     if (menuTableViewController.user == nil) {
@@ -74,10 +75,10 @@
         return;
     }
         
-    if ([link isEqualToString:self.link]) {
-        [self.delegate triggerMenuBtn];        
-        return;
-    }
+//    if ([link isEqualToString:self.link]) {
+//        [self.delegate triggerMenuBtn];        
+//        return;
+//    }
 
     self.link = link;
     self.user = menuTableViewController.user;
@@ -92,18 +93,41 @@
     } else {
         self.navigationItem.title = link;
     }
-    [self bindTweets];
+    [self bindTweetsWithUserId:nil];
+
     [self.delegate triggerMenuBtn];
     [self.navigationItem.leftBarButtonItem setEnabled:YES];
 }
 
+- (void) touchProfileImage:(id)sender
+{
+    UITapGestureRecognizer *gesture = (UITapGestureRecognizer *) sender;
+    Tweet *tweet = (Tweet *)self.tweets[gesture.view.tag];
+
+    self.link = @"user";
+    self.user = tweet.user;
+    self.tweetsOffset = -1;
+    self.navigationItem.title = [NSString stringWithFormat:@"@%@", self.user.screenName];
+    [self bindTweetsWithUserId:self.user.userId];
+}
+
 - (void)bindTweets
 {
+    [self bindTweetsWithUserId:nil];
+}
+
+- (void)bindTweetsWithUserId:(NSString *)userId
+{
+    NSLog(@"userId: %@", userId);
     NSString *apiUrl;
     if ([self.link isEqualToString:@"timeline"]) {
         apiUrl = @"1.1/statuses/home_timeline.json";
     } else if ([self.link isEqualToString:@"user"]){
         apiUrl = @"1.1/statuses/user_timeline.json";
+        if (userId != nil) {
+            apiUrl = [NSString stringWithFormat:@"%@?user_id=%@", apiUrl, userId];
+            NSLog(@"usl: %@", apiUrl);
+        }
     } else if ([self.link isEqualToString:@"mentions"]){
         apiUrl = @"1.1/statuses/mentions_timeline.json";
     }
@@ -165,6 +189,12 @@
     cell.delegate = self;
     [cell setWithTweet: self.tweets[indexPath.row+self.tweetsOffset]];
     [cell setSeparatorInset:UIEdgeInsetsZero];
+
+    [cell.profileImageView setUserInteractionEnabled:YES];
+    cell.profileImageView.tag = indexPath.row+self.tweetsOffset;
+    UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchProfileImage:)];
+    [tapped setNumberOfTapsRequired:1];
+    [cell.profileImageView addGestureRecognizer:tapped];
     return cell;
 }
 

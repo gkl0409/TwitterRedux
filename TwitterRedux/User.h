@@ -10,6 +10,7 @@
 
 @interface User : NSObject
 
+@property (nonatomic, strong) NSString *userId;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *screenName;
 @property (nonatomic, strong) NSString *profileImageUrl;
